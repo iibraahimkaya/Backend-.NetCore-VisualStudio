@@ -61,9 +61,18 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-
         }
 
+        [HttpGet("GetProductDetails")]
+        public IActionResult GetProductDetails()
+        {
+            var result = _productService.GetProductDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("Add")]
         public IActionResult Add(Product product)
@@ -75,11 +84,5 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
-        
-       
-
-
-
     }
 }
