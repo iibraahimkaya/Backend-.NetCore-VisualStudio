@@ -12,6 +12,7 @@ namespace Business.Constants
         public static string ProductNameInvalid = "Ürün İsmi Tek Harften Büyük Olmalıdır";
         public static string MaintenanceTime = "Bakım Zamanı";
         public static string ProductsListed = "Ürünler Listelendi";
-        public static string CategoryListed = "Kategori listelendi";
+        public static string CategoryListed = "Kategori Listelendi";
+        public static string UnitPriceInvalid = "Ürün Fiyatı Geçersiz";
     }
 }
