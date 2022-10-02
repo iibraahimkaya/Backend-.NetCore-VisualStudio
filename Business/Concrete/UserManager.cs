@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public void Add(User user)
         {
-            throw new NotImplementedException();
+            _userDal.ADD(user);
         }
     }
 }
