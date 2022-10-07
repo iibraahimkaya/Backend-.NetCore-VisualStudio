@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CustomerValidator()
         {
-            RuleFor(p => p.CustomerId).MinimumLength(3);
+            RuleFor(p => p.CompanyName).MinimumLength(3);
         }
     }
 }
