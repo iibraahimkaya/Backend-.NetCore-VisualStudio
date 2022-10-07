@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,15 @@ namespace WebAPI
             //services.AddSingleton<ICategoryService, CategoryManager>();
             //services.AddSingleton<ICategoryDal, EfCategoryDal>();
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(name : "v1", new OpenApiInfo
+                {
+                    Title = "WebAPI",
+                    Version = "v1",
+                    
+                });
+            });
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -94,6 +104,11 @@ namespace WebAPI
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(url : "/swagger/v1/swagger.json", name: "WebAPI");
             });
         }
     }

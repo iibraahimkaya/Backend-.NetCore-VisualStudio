@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Customer:IEntity
+    public class Supplier:IEntity
     {
-        public int CustomerId { get; set; }
+        public int SupplierId { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string ContactTitle { get; set; }
@@ -20,6 +20,6 @@ namespace Entities.Concrete
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
-
+        public string HomePage { get; set; }
     }
 }
