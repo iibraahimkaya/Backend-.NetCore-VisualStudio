@@ -22,11 +22,12 @@ namespace Business.Constants
         public static string CustomerAdded = "Müşteri Eklendi";
         public static string CustomersUpdated = "Müşteri Güncellendi";
         public static string AuthorizationDenied = "Yetkisiz Giriş";
-        internal static string UserRegistered;
-        internal static User UserNotFound;
-        internal static User PasswordError;
-        internal static string SuccessfulLogin;
-        internal static string UserAlreadyExists;
-        internal static string AccessTokenCreated;
+        public static string UserRegistered = "Kullanıcı Kaydedildi";
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre Yanlış";
+        public static string SuccessfulLogin ="Giriş Başarılı";
+        public static string UserAlreadyExists = "Kullanıcı zaten kayıtlı";
+        public static string AccessTokenCreated = "Token Oluşturuldu";
+        public static string ProductDeleted = "Ürün silindi";
     }
 }

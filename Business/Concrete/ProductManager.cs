@@ -52,7 +52,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
 
         }
-
+        [SecuredOperation("product.list,admin")]
         [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
@@ -91,6 +91,30 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionTest(Product product)
+        {
+            Add(product);
+            if (product.UnitPrice < 10)
+            {
+                throw new Exception("");
+            }
+
+            Add(product);
+            return null;
+        }
+
+        public IResult Delete(Product product)
+        {
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
+        }
+
+
+
+
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
@@ -113,24 +137,14 @@ namespace Business.Concrete
         private IResult CheckIfCategoryLimitExceded()
         {
             var result = _categoryService.GetAll();
-            if (result.Data.Count>15)
+            if (result.Data.Count > 15)
             {
                 return new ErrorResult(Messages.CategoryCountOfProductError);
             }
             return new SuccessResult();
         }
-
-        [TransactionScopeAspect]
-        public IResult AddTransactionTest(Product product)
-        {
-            Add(product);
-            if (product.UnitPrice < 10)
-            {
-                throw new Exception("");
-            }
-
-            Add(product);
-            return null;
-        }
     }
 }
+
+
+
