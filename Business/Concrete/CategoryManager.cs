@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -21,6 +23,8 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [SecuredOperation("category.list,admin")]
+        [CacheAspect]
         public IDataResult<List<Category>> GetAll()
         {
             if (DateTime.Now.Hour == 16)
@@ -30,6 +34,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoryListed);
         }
 
+        [SecuredOperation("category.list,admin")]
+        [CacheAspect]
         public IDataResult<Category> GetById(int categoryId)
         {
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.CategoryId == categoryId));
