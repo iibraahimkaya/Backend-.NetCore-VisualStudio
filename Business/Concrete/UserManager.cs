@@ -20,21 +20,16 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        [SecuredOperation("claim.list,admin")]
-        [CacheAspect]
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
         }
 
-        [SecuredOperation("user.list,admin")]
-        [CacheAspect]
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
         }
-        [SecuredOperation("user.add,admin")]
-        [CacheRemoveAspect("IUserService.Get")]
+
         public void Add(User user)
         {
             _userDal.ADD(user);
