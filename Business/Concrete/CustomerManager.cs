@@ -45,12 +45,6 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("customer.list,admin")]
-        public IDataResult<List<Customer>> GetAllByCategoryId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [SecuredOperation("customer.list,admin")]
         public IDataResult<Customer> GetById(string customerId)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CustomerId == customerId));
