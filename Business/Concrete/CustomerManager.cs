@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Castle.Core.Resource;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
@@ -50,9 +51,9 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("customer.list,admin")]
-        public IDataResult<Customer> GetById(int productId)
+        public IDataResult<Customer> GetById(string customerId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CustomerId == customerId));
         }
 
         [SecuredOperation("customer.update,admin")]

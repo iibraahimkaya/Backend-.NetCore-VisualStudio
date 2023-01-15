@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("GetByUnitPrice")]
-        public IActionResult GetByUnitPrice(int max,int min)
+        public IActionResult GetByUnitPrice(int min,int max)
         {
             var result = _productService.GetByUnitPrice(min, max);
             if (result.Success)
