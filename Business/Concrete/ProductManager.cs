@@ -54,7 +54,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
 
         }
-        [SecuredOperation("product.list,admin")]
+        //[SecuredOperation("product.list,admin")]
         [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
@@ -65,11 +65,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
         }
 
-        [SecuredOperation("product.list,admin")]
+        //[SecuredOperation("product.list,admin")]
         [CacheAspect]
-        public IDataResult<List<Product>> GetAllByCategoryId(int id)
+        public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
         }
 
         [SecuredOperation("product.list,admin")]
@@ -101,18 +101,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductUpdated);
         }
 
-        [TransactionScopeAspect]
-        public IResult AddTransactionTest(Product product)
-        {
-            Add(product);
-            if (product.UnitPrice < 10)
-            {
-                throw new Exception("");
-            }
-
-            Add(product);
-            return null;
-        }
         [CacheRemoveAspect("IProductService.Get")]
         [SecuredOperation("product.delete,admin")]
         public IResult Delete(Product product)
@@ -127,7 +115,7 @@ namespace Business.Concrete
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
-            if (result >= 50)
+            if (result >= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }

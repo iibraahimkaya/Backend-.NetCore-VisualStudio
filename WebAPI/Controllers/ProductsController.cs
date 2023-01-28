@@ -5,6 +5,7 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
+            Thread.Sleep(1000);
             var result = _productService.GetAll();
             if (result.Success)
             {
@@ -41,10 +43,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetAllByCategoriId")]
-        public IActionResult GetAllByCategoriId(int id)
+        [HttpGet("GetAllByCategoryId")]
+        public IActionResult GetAllByCategoryId(int categoryId)
         {
-            var result = _productService.GetAllByCategoryId(id);
+            var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result.Data);

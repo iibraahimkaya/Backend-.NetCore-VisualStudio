@@ -23,7 +23,7 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        [SecuredOperation("category.list,admin")]
+        //[SecuredOperation("category.list,admin")]
         [CacheAspect]
         public IDataResult<List<Category>> GetAll()
         {

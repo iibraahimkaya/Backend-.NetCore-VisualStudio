@@ -6,11 +6,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategorysController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         ICategoryService _categoryService;
 
-        public CategorysController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
