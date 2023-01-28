@@ -46,10 +46,11 @@ namespace WebAPI.Controllers
         [HttpGet("GetAllByCategoryId")]
         public IActionResult GetAllByCategoryId(int categoryId)
         {
+            Thread.Sleep(2000);
             var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result);
         }

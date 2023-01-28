@@ -69,7 +69,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId).ToList(), Messages.CategoryListed);
         }
 
         [SecuredOperation("product.list,admin")]
